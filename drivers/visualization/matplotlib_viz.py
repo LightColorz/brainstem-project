@@ -95,7 +95,7 @@ def color_certain_structure_ids(dataset: DataFrame):
         if sid in input_structure_ids and abbr in plots:
             color = STRUCTURE_ID_COLORS_MATPLOTLIB[sid]
             key_df = plots[abbr]
-            ax.plot(key_df['X'], key_df['Y'], key_df['Z'], 'o', label=abbr, color=color)
+            ax.plot(key_df['X'], key_df['Y'], key_df['Z'], 'o', label=abbr, color=color, alpha=0.8)
 
 
 
