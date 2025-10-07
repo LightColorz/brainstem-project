@@ -231,7 +231,7 @@ class Matplotlib(Visualizer):
             ax.set_ylabel('Y')
             ax.set_zlabel('Z')
 
-            scatter = ax.scatter(dataset['X'], dataset['Y'], dataset['Z'], c=dataset[cluster_label_column], cmap=rainbow, marker='o', alpha=0.8)
+            scatter = ax.scatter(dataset['X'], dataset['Y'], dataset['Z'], c=dataset[cluster_label_column], cmap=rainbow, marker='o', alpha=0.6)
 
             fig.colorbar(scatter, ax=ax, label='Cluster ID')
 
