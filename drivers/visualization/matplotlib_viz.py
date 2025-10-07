@@ -64,7 +64,12 @@ def color_certain_structure_ids(dataset: DataFrame):
     # Modify the colors and opacity of the dataset
     colors = [STRUCTURE_ID_COLORS_MATPLOTLIB[sid] if sid in input_structure_ids else 'b' for sid in dataset[STRUCTURE_IDS_COLUMN]]
 
-    fig = plt.figure()
+
+    
+    desired_order = [
+        "XII", "IRN", "MDRNd", "AMBd", "PGRNd", "LRN",
+        "AMBv", "PGRNl", "MDRNv", "PARN", "VII", "MARN", "GRN"
+    ]
 
     title, did_go_back = get_text_input_with_back("What would you like to title the plot?")
 
@@ -73,19 +78,26 @@ def color_certain_structure_ids(dataset: DataFrame):
 
     plots: Dict[str, DataFrame] = {}
 
-    for i in input_structure_ids:
-        # divide plot into structure ids
-        sid_df = dataset[dataset[STRUCTURE_IDS_COLUMN] == i]
+    for sid in input_structure_ids:
+        abbr = STRUCTURE_ID_ABBREVIATIONS.get(sid)
+        if abbr:
+            sid_df = dataset[dataset[STRUCTURE_IDS_COLUMN] == sid]
+            print(sid_df.head())
 
-        print(sid_df.head())
-        plots[STRUCTURE_ID_ABBREVIATIONS[i]] = sid_df
+            plots[abbr] = sid_df
 
+    fig = plt.figure()
     ax = fig.add_subplot(111, projection='3d')
     ax.set_title(title)
+    
+    for abbr in desired_order:
+        sid = next((k for k, v in STRUCTURE_ID_ABBREVIATIONS.items() if v == abbr), None)
+        if sid in input_structure_ids and abbr in plots:
+            color = STRUCTURE_ID_COLORS_MATPLOTLIB[sid]
+            key_df = plots[abbr]
+            ax.plot(key_df['X'], key_df['Y'], key_df['Z'], 'o', label=abbr, color=color)
 
-    for i in plots:
-        key_df = plots[i]
-        ax.plot(key_df['X'], key_df['Y'], key_df['Z'], 'o', label=i)
+
 
     plt.legend(loc="upper right", bbox_to_anchor=(2, 1))
 

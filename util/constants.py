@@ -125,20 +125,21 @@ STRUCTURE_ID_COLORS = {
 }
 
 STRUCTURE_ID_COLORS_MATPLOTLIB = {
-    773: "red",
-    136: "green",
-    1098: "blue",
-    939: "yellow",
-    970: "cyan",
-    235: "magenta",
-    143: "silver",
-    978: "gray",
-    1107: "maroon",
-    852: "olive",
-    661: "lime",
-    307: "teal",
-    1048: "navy"
+    773: "#35abff",  
+    136: "#ff7f0e",  
+    1098: "#2ca02c",
+    939: "#d62728", 
+    970: "#9467bd",  
+    235: "#794a41", 
+    143: "#e377c2", 
+    978: "#7f7f7f", 
+    1107: "#bfff00", 
+    852: "#3cebff",  
+    661: "#4990c0",  
+    307: "#ff7f0f",  
+    1048: "#32cd32"  
 }
+
 
 SAVE_GENERATED_DATA_PATH = "data/generated/"
 
